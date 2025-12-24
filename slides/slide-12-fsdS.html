@@ -35,17 +35,19 @@
         }
 
         @media (max-width: 1024px) {
-            .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
         }
 
         @media (max-width: 768px) {
-            .slide-container { padding: 20px; }
-            .header-section h1 { font-size: 1.75rem; }
-            .skills-grid { grid-template-columns: 1fr; gap: 16px; }
-            .skill-card { padding: 16px; }
-            .category-icon { width: 50px; height: 50px; font-size: 1.5rem; }
-            .category-title { font-size: 1.1rem; }
-            .chip { font-size: 0.7rem; padding: 4px 8px; }
+            .slide-container { padding: 15px; overflow-y: auto; }
+            .header-section { margin-bottom: 15px; padding-bottom: 10px; }
+            .header-section h1 { font-size: 1.5rem; }
+            .skills-grid { grid-template-columns: 1fr; gap: 12px; }
+            .skill-card { padding: 14px; }
+            .category-icon { width: 45px; height: 45px; font-size: 1.3rem; }
+            .category-title { font-size: 1rem; margin-bottom: 8px; }
+            .chips-container { gap: 5px; margin-top: 8px; }
+            .chip { font-size: 0.65rem; padding: 4px 7px; }
         }
 
         /* Decorative Background Elements */
@@ -84,7 +86,7 @@
         .header-section {
             margin-bottom: 25px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
+            /* padding-bottom: 15px; */
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -116,7 +118,7 @@
             background: rgba(30, 41, 59, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            padding: 20px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             transition: all 0.3s ease;

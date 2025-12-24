@@ -23,9 +23,7 @@
 
         .slide-container {
             width: 100%;
-            max-width: 1280px;
             height: 100vh;
-            max-height: 720px;
             display: flex;
             position: relative;
             background-color: #0f172a;
@@ -34,20 +32,25 @@
         }
 
         @media (max-width: 1024px) {
-            .content-grid { grid-template-columns: 1fr; gap: 20px; }
-            .main-content { padding: 20px 30px; }
-            .illustration-container { height: 150px; }
+            .content-grid { grid-template-columns: 1fr; gap: 25px; }
+            .main-content { padding: 20px 25px; }
+            .right-column { margin-top: 0; }
+            .illustration-container { height: 140px; margin-top: 15px; }
         }
 
         @media (max-width: 768px) {
-            .main-content { padding: 15px 20px; }
-            .tech-grid { grid-template-columns: 1fr; gap: 10px; }
-            .header-section h1 { font-size: 1.75rem; }
-            .header-section p { font-size: 0.85rem; }
-            .role-card { padding: 15px; margin-bottom: 10px; }
-            .role-card h3 { font-size: 1rem; }
-            .tech-item { padding: 10px 12px; }
-            .tech-item p { font-size: 0.8rem; }
+            .main-content { padding: 15px; overflow-y: auto; }
+            .header-section { margin-bottom: 15px; padding-bottom: 12px; }
+            .header-section h1 { font-size: 1.5rem; }
+            .header-section p { font-size: 0.8rem; }
+            .tech-grid { grid-template-columns: 1fr; gap: 8px; }
+            .role-card { padding: 12px; margin-bottom: 10px; }
+            .role-card h3 { font-size: 0.95rem; }
+            .role-card p { font-size: 0.8rem; line-height: 1.4; }
+            .tech-item { padding: 10px; }
+            .tech-item p { font-size: 0.75rem; }
+            .right-column { padding: 15px; }
+            .section-badge { font-size: 0.75rem; padding: 3px 10px; }
         }
 
         /* Decorative background elements */
@@ -90,7 +93,7 @@
         .header-section {
             margin-bottom: 30px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 20px;
+            /* padding-bottom: 5px; */
         }
 
         .content-grid {

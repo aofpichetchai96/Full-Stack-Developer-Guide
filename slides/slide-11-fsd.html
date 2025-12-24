@@ -34,17 +34,19 @@
         }
 
         @media (max-width: 1024px) {
-            .grid-container { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+            .grid-container { grid-template-columns: repeat(2, 1fr); gap: 16px; }
         }
 
         @media (max-width: 768px) {
-            .slide-container { padding: 20px; }
-            .header-section h1 { font-size: 1.75rem; }
-            .grid-container { grid-template-columns: 1fr; gap: 16px; }
-            .check-card { padding: 16px; }
-            .card-icon { width: 50px; height: 50px; font-size: 1.5rem; }
-            .card-title { font-size: 1.1rem; }
-            .check-list li { font-size: 0.85rem; }
+            .slide-container { padding: 15px; overflow-y: auto; }
+            .header-section { margin-bottom: 15px; padding-bottom: 10px; }
+            .header-section h1 { font-size: 1.5rem; }
+            .grid-container { grid-template-columns: 1fr; gap: 12px; }
+            .check-card { padding: 14px; }
+            .card-icon { width: 45px; height: 45px; font-size: 1.3rem; }
+            .card-title { font-size: 1rem; margin-bottom: 8px; }
+            .check-list { margin-top: 8px; }
+            .check-list li { font-size: 0.8rem; margin-bottom: 6px; }
         }
 
         /* Decorative Background */
@@ -86,7 +88,7 @@
             align-items: flex-end;
             margin-bottom: 25px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
+            padding-bottom: 5px;
         }
 
         .section-tag {

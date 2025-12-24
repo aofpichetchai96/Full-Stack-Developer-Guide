@@ -276,7 +276,7 @@
             <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">→</button>
         </div>
     </div>
-
+""""
     <script>
         let currentSlideIndex = 0;
 
@@ -304,22 +304,43 @@
             slideFiles.forEach((file, index) => {
                 const iframe = document.createElement('iframe');
                 iframe.src = file;
-                iframe.style.cssText = `
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    width: 1280px;
-                    height: 720px;
-                    max-width: 90vw;
-                    max-height: 90vh;
-                    border: none;
-                    opacity: 0;
-                    transition: opacity 0.5s ease-in-out;
-                    pointer-events: none;
-                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-                    border-radius: 12px;
-                `;
+                
+                // ตรวจสอบว่าเป็นมือถือหรือไม่
+                const isMobile = window.innerWidth <= 768;
+                
+                if (isMobile) {
+                    // Mobile: เต็มจอ 100%
+                    iframe.style.cssText = `
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        border: none;
+                        opacity: 0;
+                        transition: opacity 0.5s ease-in-out;
+                        pointer-events: none;
+                    `;
+                } else {
+                    // Desktop: ขนาดปกติ
+                    iframe.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 1280px;
+                        height: 720px;
+                        max-width: 90vw;
+                        max-height: 90vh;
+                        border: none;
+                        opacity: 0;
+                        transition: opacity 0.5s ease-in-out;
+                        pointer-events: none;
+                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+                        border-radius: 12px;
+                    `;
+                }
+                
                 iframe.id = `slide-${index}`;
                 container.appendChild(iframe);
             });
@@ -363,6 +384,38 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') changeSlide(-1);
             if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // ปรับขนาด iframe เมื่อ resize หน้าจอ
+        window.addEventListener('resize', () => {
+            const iframes = document.querySelectorAll('#slides-container iframe');
+            const isMobile = window.innerWidth <= 768;
+            
+            iframes.forEach(iframe => {
+                if (isMobile) {
+                    // Mobile: เต็มจอ
+                    iframe.style.top = '0';
+                    iframe.style.left = '0';
+                    iframe.style.transform = 'none';
+                    iframe.style.width = '100vw';
+                    iframe.style.height = '100vh';
+                    iframe.style.maxWidth = 'none';
+                    iframe.style.maxHeight = 'none';
+                    iframe.style.boxShadow = 'none';
+                    iframe.style.borderRadius = '0';
+                } else {
+                    // Desktop: ขนาดปกติ
+                    iframe.style.top = '50%';
+                    iframe.style.left = '50%';
+                    iframe.style.transform = 'translate(-50%, -50%)';
+                    iframe.style.width = '1280px';
+                    iframe.style.height = '720px';
+                    iframe.style.maxWidth = '90vw';
+                    iframe.style.maxHeight = '90vh';
+                    iframe.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.5)';
+                    iframe.style.borderRadius = '12px';
+                }
+            });
         });
 
         // เริ่มต้น

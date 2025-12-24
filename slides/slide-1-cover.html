@@ -32,18 +32,22 @@
         }
 
         @media (max-width: 1280px) {
-            .slide-container { padding: 2rem 2.5rem; }
-            .main-grid { gap: 2rem; }
+            .slide-container { padding: 1.5rem 2rem; }
+            .content-wrapper { padding: 2rem 2.5rem; }
+            .text-section { padding-right: 1.5rem; }
         }
 
         @media (max-width: 768px) {
-            .slide-container { padding: 1.5rem; font-size: 0.9rem; }
-            .main-grid { flex-direction: column; gap: 1.5rem; }
-            h1 { font-size: 2rem !important; }
-            h2 { font-size: 1.25rem !important; }
-            .badge, .tech-badge { font-size: 0.75rem; padding: 0.25rem 0.75rem; }
-            .feature-item { font-size: 0.85rem; }
-            img { max-height: 200px; }
+            .slide-container { padding: 1rem; font-size: 0.9rem; overflow-y: auto; }
+            .content-wrapper { flex-direction: column; padding: 1.5rem; text-align: center; }
+            .text-section { padding-right: 0; margin-bottom: 1.5rem; }
+            .image-section { width: 100%; max-width: 300px; }
+            h1 { font-size: 1.75rem !important; line-height: 1.2 !important; }
+            h2 { font-size: 1.1rem !important; }
+            .badge, .tech-badge { font-size: 0.7rem; padding: 0.25rem 0.6rem; }
+            .feature-item { font-size: 0.8rem; justify-content: center; }
+            img { max-height: 180px; width: auto; }
+            .tech-badges { justify-content: center; }
         }
 
         /* Simulated Gradient Effects using Absolute Positioned Blobs */
