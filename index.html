@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Developer Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #0f172a;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            background: #0f172a;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Title Slide */
+        .title-slide {
+            background-color: #0f172a;
+            position: relative;
+            overflow: hidden;
+            padding: 0 !important;
+        }
+
+        .blob-blue {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background-color: #1e3a8a;
+            border-radius: 50%;
+            top: -400px;
+            right: -200px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .blob-purple {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background-color: #581c87;
+            border-radius: 50%;
+            bottom: -200px;
+            left: -100px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Content Slide */
+        .content-slide h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        .content-slide .content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .content-slide ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-slide li {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .content-slide li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* Code Slide */
+        .code-slide h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+
+        .code-slide pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 30px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-size: 1rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .code-slide code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            border: none;
+            padding: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            pointer-events: auto;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background: rgba(118, 75, 162, 0.9);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn:disabled {
+            background: rgba(204, 204, 204, 0.5);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide-container {
+                height: auto;
+                min-height: 500px;
+            }
+
+            .slide {
+                padding: 30px;
+            }
+
+            .content-slide h2,
+            .code-slide h2 {
+                font-size: 2rem;
+            }
+
+            .content-slide li {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Slide Counter -->
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">0</span>
+        </div>
+
+        <!-- Slides Container (iframes) -->
+        <div id="slides-container"></div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">←</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">→</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+
+        // รายการไฟล์สไลด์ (เพิ่มไฟล์ใหม่ที่นี่)
+        const slideFiles = [
+            'slides/slide-1-cover.html',
+            'slides/slide-2-content.html',
+            'slides/slide-3-frontend.html',
+            'slides/slide-4-backend.html',
+            'slides/slide-5-database.html',
+            'slides/slide-6-devops.html',
+            'slides/slide-7-api.html',
+            'slides/slide-8-version-control.html',
+            'slides/slide-9-uiux.html',
+            'slides/slide-10-Security.html',
+            'slides/slide-11-fsd.html',
+            'slides/slide-12-fsdS.html',
+            'slides/slide-13-fsdR.html',
+        ];
+
+        // สร้าง iframes
+        function loadSlides() {
+            const container = document.getElementById('slides-container');
+
+            slideFiles.forEach((file, index) => {
+                const iframe = document.createElement('iframe');
+                iframe.src = file;
+                iframe.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 1280px;
+                    height: 720px;
+                    max-width: 90vw;
+                    max-height: 90vh;
+                    border: none;
+                    opacity: 0;
+                    transition: opacity 0.5s ease-in-out;
+                    pointer-events: none;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+                    border-radius: 12px;
+                `;
+                iframe.id = `slide-${index}`;
+                container.appendChild(iframe);
+            });
+
+            document.getElementById('totalSlides').textContent = slideFiles.length;
+            showSlide(0);
+        }
+
+        function showSlide(index) {
+            // ซ่อน iframes ทั้งหมด
+            const iframes = document.querySelectorAll('#slides-container iframe');
+            iframes.forEach((iframe, i) => {
+                if (i === index) {
+                    iframe.style.opacity = '1';
+                    iframe.style.pointerEvents = 'auto';
+                } else {
+                    iframe.style.opacity = '0';
+                    iframe.style.pointerEvents = 'none';
+                }
+            });
+
+            // อัปเดตตัวนับ
+            document.getElementById('currentSlide').textContent = index + 1;
+
+            // อัปเดตสถานะปุ่ม
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === slideFiles.length - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+
+            // เก็บให้อยู่ในขอบเขต
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= slideFiles.length) currentSlideIndex = slideFiles.length - 1;
+
+            showSlide(currentSlideIndex);
+        }
+
+        // นำทางด้วยแป้นพิมพ์
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // เริ่มต้น
+        loadSlides();
+    </script>
+</body>
+
+</html>

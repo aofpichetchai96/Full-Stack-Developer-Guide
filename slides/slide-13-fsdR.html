@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Full Stack Developer Roadmap</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a;
+            color: white;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #0f172a;
+            padding: 30px 40px;
+            overflow: hidden;
+        }
+
+        /* Background Ambient Effects */
+        .ambient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .glow-1 {
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: #3b82f6;
+        }
+
+        .glow-2 {
+            bottom: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: #8b5cf6;
+        }
+
+        .glow-3 {
+            top: 40%;
+            left: 40%;
+            width: 300px;
+            height: 300px;
+            background: #10b981;
+            opacity: 0.1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        /* Roadmap Grid Layout */
+        .roadmap-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            flex: 1;
+            padding-bottom: 10px;
+        }
+
+        .phase-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phase-card:hover {
+            background: rgba(30, 41, 59, 0.7);
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .phase-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-right: 15px;
+            opacity: 0.2;
+            line-height: 1;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        .phase-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 12px;
+        }
+
+        .phase-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .phase-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .phase-content li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        .phase-content li i {
+            margin-top: 5px;
+            margin-right: 8px;
+            font-size: 0.6rem;
+            opacity: 0.7;
+        }
+
+        /* Color Themes for Phases */
+        .theme-slate .phase-icon {
+            background: rgba(148, 163, 184, 0.2);
+            color: #cbd5e1;
+        }
+
+        .theme-slate .phase-number {
+            color: #cbd5e1;
+        }
+
+        .theme-blue .phase-icon {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .theme-blue .phase-number {
+            color: #60a5fa;
+        }
+
+        .theme-green .phase-icon {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .theme-green .phase-number {
+            color: #34d399;
+        }
+
+        .theme-orange .phase-icon {
+            background: rgba(249, 115, 22, 0.2);
+            color: #fb923c;
+        }
+
+        .theme-orange .phase-number {
+            color: #fb923c;
+        }
+
+        .theme-red .phase-icon {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .theme-red .phase-number {
+            color: #f87171;
+        }
+
+        .theme-purple .phase-icon {
+            background: rgba(168, 85, 247, 0.2);
+            color: #c084fc;
+        }
+
+        .theme-purple .phase-number {
+            color: #c084fc;
+        }
+
+        /* Connector Lines */
+        .arrow-right {
+            position: absolute;
+            right: -24px;
+            top: 50%;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 1.5rem;
+            transform: translateY(-50%);
+            z-index: 5;
+        }
+
+        /* Certifications Bar */
+        .cert-bar {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .cert-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cert-tag i {
+            margin-right: 8px;
+            color: #fbbf24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="ambient-glow glow-1"></div>
+        <div class="ambient-glow glow-2"></div>
+        <div class="ambient-glow glow-3"></div>
+        <div class="content-wrapper">
+            <!-- Header -->
+            <div class="header flex justify-between items-end">
+                <div>
+                    <span class="text-sky-400 font-semibold mb-1 tracking-wider uppercase text-sm block">Career
+                        Path</span>
+                    <h1 class="text-3xl font-bold text-white leading-tight">Full Stack Developer Roadmap (2024-2025)
+                    </h1>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-400 text-sm">เส้นทางการพัฒนาทักษะสู่มืออาชีพ</p>
+                </div>
+            </div>
+            <!-- Main Roadmap Grid -->
+            <div class="roadmap-container">
+                <!-- Phase 1 -->
+                <div class="phase-card theme-slate">
+                    <span class="phase-number">01</span>
+                    <div class="phase-header">
+                        <div class="phase-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 class="phase-title">Web Fundamentals</h3>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>
+                                <p>HTML5 &amp; CSS3 (Flexbox/Grid)</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>JavaScript (ES6+) Syntax &amp; DOM</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Basic Git &amp; GitHub Workflow</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>HTTP/DNS/Hosting Basics</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-right"></i>
+                </div>
+                <!-- Phase 2 -->
+                <div class="phase-card theme-blue">
+                    <span class="phase-number">02</span>
+                    <div class="phase-header">
+                        <div class="phase-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3 class="phase-title">Frontend Mastery</h3>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>
+                                <p>Framework: React.js / Vue.js</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>State Management (Redux/Pinia)</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Tailwind CSS / Component Libs</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Fetch API / Axios Integration</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-right"></i>
+                </div>
+                <!-- Phase 3 -->
+                <div class="phase-card theme-green">
+                    <span class="phase-number">03</span>
+                    <div class="phase-header">
+                        <div class="phase-icon"><i class="fas fa-server"></i></div>
+                        <h3 class="phase-title">Backend Proficiency</h3>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>
+                                <p>Node.js / Python / Go</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>RESTful API &amp; GraphQL Design</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Database (SQL &amp; NoSQL) Design</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Authentication (JWT/OAuth)</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Phase 4 -->
+                <div class="phase-card theme-orange">
+                    <span class="phase-number">04</span>
+                    <div class="phase-header">
+                        <div class="phase-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <h3 class="phase-title">DevOps &amp; Cloud</h3>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>
+                                <p>Docker &amp; Containerization</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>CI/CD Pipelines (GitHub Actions)</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Cloud Basics (AWS/GCP/Azure)</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Basic Linux Command Line</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-right"></i>
+                </div>
+                <!-- Phase 5 -->
+                <div class="phase-card theme-red">
+                    <span class="phase-number">05</span>
+                    <div class="phase-header">
+                        <div class="phase-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3 class="phase-title">Quality &amp; Security</h3>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>
+                                <p>Unit &amp; Integration Testing (Jest)</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>OWASP Top 10 Awareness</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Secure Coding Practices</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Performance Optimization</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-right"></i>
+                </div>
+                <!-- Phase 6 -->
+                <div class="phase-card theme-purple">
+                    <span class="phase-number">06</span>
+                    <div class="phase-header">
+                        <div class="phase-icon"><i class="fas fa-rocket"></i></div>
+                        <h3 class="phase-title">Portfolio &amp; Growth</h3>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>
+                                <p>Build 2-3 Full Scale Projects</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Open Source Contributions</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>System Design Knowledge</p>
+                            </li>
+                            <li><i class="fas fa-check"></i>
+                                <p>Soft Skills &amp; Interview Prep</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Certifications Footer -->
+            <div class="cert-bar">
+                <div class="flex items-center">
+                    <i class="fas fa-certificate text-yellow-400 mr-3 text-lg"></i>
+                    <span class="font-semibold text-gray-300 text-sm">Recommended Certifications:</span>
+                </div>
+                <div class="flex space-x-3">
+                    <div class="cert-tag"><i class="fab fa-aws"></i>
+                        <p>AWS Certified Cloud Practitioner</p>
+                    </div>
+                    <div class="cert-tag"><i class="fas fa-dharmachakra"></i>
+                        <p>CKAD (Kubernetes Developer)</p>
+                    </div>
+                    <div class="cert-tag"><i class="fab fa-google"></i>
+                        <p>Google Associate Cloud Engineer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

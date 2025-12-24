@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>UI/UX Design Fundamentals</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: #0f172a;
+            color: white;
+            padding: 30px 40px;
+            overflow: hidden;
+        }
+
+        /* Background Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        .blob-1 {
+            top: -150px;
+            left: -100px;
+            width: 600px;
+            height: 600px;
+            background: #3b82f6;
+        }
+
+        /* Blue */
+        .blob-2 {
+            bottom: -150px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: #a855f7;
+        }
+
+        /* Purple */
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 24px;
+            flex: 1;
+        }
+
+        .content-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .content-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 24px;
+        }
+
+        .card-content {
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #f1f5f9;
+        }
+
+        .bullet-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .bullet-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .bullet-list li i {
+            margin-right: 10px;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        /* Card Themes */
+        .theme-blue .icon-circle {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .theme-blue li i {
+            color: #60a5fa;
+        }
+
+        .theme-purple .icon-circle {
+            background: rgba(168, 85, 247, 0.2);
+            color: #c084fc;
+        }
+
+        .theme-purple li i {
+            color: #c084fc;
+        }
+
+        .theme-green .icon-circle {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .theme-green li i {
+            color: #34d399;
+        }
+
+        .theme-orange .icon-circle {
+            background: rgba(249, 115, 22, 0.2);
+            color: #fb923c;
+        }
+
+        .theme-orange li i {
+            color: #fb923c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="content-wrapper">
+            <div class="header flex justify-between items-end">
+                <div>
+                    <p class="text-indigo-400 font-semibold mb-1 tracking-wider uppercase text-sm">Essential Knowledge
+                    </p>
+                    <h1 class="text-4xl font-bold text-white">UI/UX Design Fundamentals</h1>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-400 text-sm">พื้นฐานการออกแบบที่ Full Stack Developer ควรรู้</p>
+                </div>
+            </div>
+            <div class="grid-container">
+                <!-- Card 1: Design Principles -->
+                <div class="content-card theme-blue">
+                    <div class="icon-circle">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Core Principles (หลักการออกแบบ)</h3>
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-circle"></i><span>User-Centered:
+                                    ออกแบบโดยคำนึงถึงผู้ใช้เป็นศูนย์กลาง</span></li>
+                            <li><i class="fas fa-circle"></i><span>Visual Hierarchy:
+                                    จัดลำดับความสำคัญของข้อมูลให้ชัดเจน</span></li>
+                            <li><i class="fas fa-circle"></i><span>Consistency: ความสม่ำเสมอของ Layout
+                                    และการใช้งาน</span></li>
+                            <li><i class="fas fa-circle"></i><span>Feedback &amp; Affordance:
+                                    การตอบสนองที่ชัดเจนต่อการกระทำ</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Card 2: UI Systems -->
+                <div class="content-card theme-purple">
+                    <div class="icon-circle">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">UI Systems (ระบบการออกแบบ)</h3>
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-circle"></i><span>Grid &amp; Layout: การจัดวางที่สมดุลและ
+                                    Responsive</span></li>
+                            <li><i class="fas fa-circle"></i><span>Typography &amp; Color:
+                                    การใช้ตัวอักษรและสีสื่อความหมาย</span></li>
+                            <li><i class="fas fa-circle"></i><span>Component Libraries: การใช้ Material UI, Ant
+                                    Design</span></li>
+                            <li><i class="fas fa-circle"></i><span>Design Tokens: ค่ามาตรฐานสำหรับการออกแบบ
+                                    (Spacing)</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Card 3: Accessibility -->
+                <div class="content-card theme-green">
+                    <div class="icon-circle">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Accessibility (การเข้าถึง: a11y)</h3>
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-circle"></i><span>WCAG 2.2 Compliance: ปฏิบัติตามมาตรฐานสากล</span>
+                            </li>
+                            <li><i class="fas fa-circle"></i><span>Semantic HTML &amp; ARIA: โครงสร้างถูกต้อง
+                                    เครื่องมืออ่านจอเข้าใจ</span></li>
+                            <li><i class="fas fa-circle"></i><span>Contrast Ratio: ความแตกต่างของสีที่เพียงพอ</span>
+                            </li>
+                            <li><i class="fas fa-circle"></i><span>Keyboard Navigation:
+                                    ใช้งานได้โดยไม่ต้องใช้เมาส์</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Card 4: Testing & Prototyping -->
+                <div class="content-card theme-orange">
+                    <div class="icon-circle">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Testing &amp; Process (การทดสอบ)</h3>
+                        <ul class="bullet-list">
+                            <li><i class="fas fa-circle"></i><span>Prototyping: สร้างต้นแบบใน Figma ก่อนเขียนโค้ด</span>
+                            </li>
+                            <li><i class="fas fa-circle"></i><span>Usability Testing:
+                                    ทดสอบการใช้งานกับกลุ่มเป้าหมาย</span></li>
+                            <li><i class="fas fa-circle"></i><span>Analytics: วิเคราะห์พฤติกรรมผู้ใช้ (Hotjar, Google
+                                    Analytics)</span></li>
+                            <li><i class="fas fa-circle"></i><span>Heuristic Evaluation:
+                                    ประเมินตามหลักการใช้งานพื้นฐาน</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

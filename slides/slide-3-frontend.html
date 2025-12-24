@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Frontend Development</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a;
+            /* Slate 900 base */
+            color: #f8fafc;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            position: relative;
+            background-color: #0f172a;
+            overflow: hidden;
+        }
+
+        /* Decorative background elements */
+        .bg-accent-blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background-color: #1d4ed8;
+            /* Blue 700 */
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+            top: -200px;
+            right: -200px;
+            z-index: 0;
+        }
+
+        .bg-accent-blob-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background-color: #7e22ce;
+            /* Purple 700 */
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+            bottom: -100px;
+            left: -100px;
+            z-index: 0;
+        }
+
+        .main-content {
+            flex: 1;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 40px;
+        }
+
+        .header-section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px;
+        }
+
+        .role-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 16px;
+            margin-bottom: 10px;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .tech-item:hover {
+            transform: translateX(5px);
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .tech-icon {
+            font-size: 24px;
+            margin-right: 12px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .highlight-blue {
+            color: #60a5fa;
+        }
+
+        .highlight-yellow {
+            color: #fbbf24;
+        }
+
+        .highlight-orange {
+            color: #fb923c;
+        }
+
+        .highlight-cyan {
+            color: #22d3ee;
+        }
+
+        .highlight-green {
+            color: #4ade80;
+        }
+
+        .highlight-red {
+            color: #f87171;
+        }
+
+        .illustration-container {
+            margin-top: auto;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+        }
+
+        .illustration-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .illustration-img:hover {
+            opacity: 1;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Custom list style */
+        .feature-list p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            color: #cbd5e1;
+        }
+
+        .feature-list i {
+            margin-top: 5px;
+            margin-right: 12px;
+            color: #60a5fa;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="bg-accent-blob"></div>
+        <div class="bg-accent-blob-2"></div>
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header-section flex justify-between items-end">
+                <div>
+                    <span class="section-badge"><i class="fas fa-layer-group mr-2"></i>Component 01</span>
+                    <h1 class="text-4xl font-bold text-white mt-2">Frontend Development</h1>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-400">ส่วนติดต่อผู้ใช้และประสบการณ์การใช้งาน</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <!-- Left Column: Description & Roles -->
+                <div class="left-column">
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-semibold text-blue-400 mb-3">หน้าที่ความรับผิดชอบ</h2>
+                        <p class="text-gray-300 leading-relaxed mb-4 text-lg">
+                            ส่วนงานที่ผู้ใช้มองเห็นและโต้ตอบด้วยโดยตรง (Client-side) เน้นการสร้าง UI ที่สวยงาม
+                            ใช้งานง่าย และตอบสนองรวดเร็วบนทุกอุปกรณ์
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="role-card">
+                            <h3 class="text-lg font-medium text-white mb-2"><i
+                                    class="fas fa-paint-brush text-blue-400 mr-2"></i>UI Implementation</h3>
+                            <p class="text-sm text-gray-400 feature-list">
+                                แปลงดีไซน์จาก Figma/Adobe XD เป็นโค้ดที่ใช้งานได้จริง (Pixel-perfect)
+                            </p>
+                        </div>
+                        <div class="role-card" style="border-left-color: #8b5cf6;">
+                            <h3 class="text-lg font-medium text-white mb-2"><i
+                                    class="fas fa-bolt text-purple-400 mr-2"></i>Interactivity &amp; State</h3>
+                            <p class="text-sm text-gray-400 feature-list">
+                                จัดการสถานะข้อมูล (State Management) และการตอบสนองต่อการกระทำของผู้ใช้
+                            </p>
+                        </div>
+                        <div class="role-card" style="border-left-color: #10b981;">
+                            <h3 class="text-lg font-medium text-white mb-2"><i
+                                    class="fas fa-tachometer-alt text-green-400 mr-2"></i>Performance &amp; A11y</h3>
+                            <p class="text-sm text-gray-400 feature-list">
+                                ปรับแต่งความเร็วในการโหลด (Web Vitals) และการเข้าถึงสำหรับผู้พิการ (Accessibility)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Tech Stack -->
+                <div class="right-column">
+                    <h2 class="text-xl font-semibold text-white mb- border-b border-gray-700 pb-1">
+                        <i class="fas fa-microchip mr-2 text-indigo-400"></i>Technology Stack 2024-2025
+                    </h2>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-html5 tech-icon highlight-orange"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">HTML5 &amp; CSS3</p>
+                                <p class="text-xs text-gray-500">Semantic &amp; Styling</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js tech-icon highlight-yellow"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">JavaScript / TS</p>
+                                <p class="text-xs text-gray-500">Core Logic &amp; Types</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-react tech-icon highlight-cyan"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">React / Next.js</p>
+                                <p class="text-xs text-gray-500">Popular Library</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-vuejs tech-icon highlight-green"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Vue / Nuxt</p>
+                                <p class="text-xs text-gray-500">Progressive Framework</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-angular tech-icon highlight-red"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Angular</p>
+                                <p class="text-xs text-gray-500">Enterprise Framework</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-wind tech-icon highlight-cyan"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Tailwind CSS</p>
+                                <p class="text-xs text-gray-500">Utility-first CSS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="illustration-container mt-6">
+                        <!-- Real illustration image -->
+                        <img alt="Frontend Development Illustration" class="illustration-img"
+                            src="https://page.gensparksite.com/slides_images/ca41663905fae16e7d130b0318ce1881.webp" />
+                        <div class="absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black to-transparent">
+                            <p class="text-xs text-gray-300 text-center">Modern Frontend Workflow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Full Stack Developer Cover Slide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #0f172a;
+            /* Slate 900 - Deep Blue base */
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Simulated Gradient Effects using Absolute Positioned Blobs */
+        .blob-blue {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background-color: #1e3a8a;
+            /* Blue 900 */
+            border-radius: 50%;
+            top: -400px;
+            right: -200px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .blob-purple {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background-color: #581c87;
+            /* Purple 900 */
+            border-radius: 50%;
+            bottom: -200px;
+            left: -100px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+            z-index: 10;
+            padding: 2.5rem 3rem;
+            align-items: center;
+        }
+
+        .text-section {
+            flex: 1.2;
+            padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .image-section {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Background Elements -->
+        <div class="blob-blue"></div>
+        <div class="blob-purple"></div>
+        <!-- Decorative Grid Pattern (Optional subtle overlay) -->
+        <div
+            style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.1; z-index: 1;">
+        </div>
+        <div class="content-wrapper">
+            <!-- Left Content -->
+            <div class="text-section text-white">
+                <div
+                    class="inline-flex items-center space-x-2 bg-indigo-900 bg-opacity-50 border border-indigo-500 text-indigo-300 px-4 py-2 rounded-full text-sm font-semibold mb-6 w-max">
+                    <i class="fas fa-rocket"></i>
+                    <span>อัปเดตล่าสุด 2024-2025</span>
+                </div>
+                <h1 class="text-7xl font-bold leading-tight mb-4 tracking-tight">
+                    Full Stack <br />
+                    <span style="color: #818cf8;">Developer</span>
+                </h1>
+                <h2 class="text-2xl text-gray-300 font-light mb-8">
+                    คู่มือสมบูรณ์: จาก Frontend สู่ Backend และการดูแลระบบ
+                </h2>
+                <div class="mb-10">
+                    <p class="text-lg text-gray-400 leading-relaxed mb-2">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i> ลด Handoff ระหว่างทีม เร่งการส่งมอบงาน
+                    </p>
+                    <p class="text-lg text-gray-400 leading-relaxed mb-2">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i> เข้าใจระบบแบบองค์รวม (Holistic View)
+                    </p>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        <i class="fas fa-check-circle text-green-400 mr-2"></i> ตั้งแต่ไอเดีย จนถึง Production
+                    </p>
+                </div>
+                <!-- Tech Stack Badges -->
+                <div class="flex flex-wrap gap-3">
+                    <div class="flex items-center px-3 py-1.5 bg-gray-800 rounded border border-gray-700">
+                        <i class="fab fa-js text-yellow-400 mr-2"></i>
+                        <span class="text-sm text-gray-300">JavaScript/TypeScript</span>
+                    </div>
+                    <div class="flex items-center px-3 py-1.5 bg-gray-800 rounded border border-gray-700">
+                        <i class="fas fa-cloud text-blue-400 mr-2"></i>
+                        <span class="text-sm text-gray-300">Cloud &amp; DevOps</span>
+                    </div>
+                    <div class="flex items-center px-3 py-1.5 bg-gray-800 rounded border border-gray-700">
+                        <i class="fas fa-shield-alt text-red-400 mr-2"></i>
+                        <span class="text-sm text-gray-300">Security</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Content: Image -->
+            <div class="image-section">
+                <div class="relative w-full max-w-md">
+                    <!-- Main Image -->
+                    <div class="glass-card p-4 relative z-20">
+                        <img alt="Full Stack Development Illustration"
+                            class="w-full h-auto rounded-lg shadow-2xl object-cover"
+                            src="https://page.gensparksite.com/slides_images/864057387fa45a7fda0974ab5e42bde5.webp"
+                            style="max-height: 400px;" />
+                    </div>
+                    <!-- Decorative Elements Floating -->
+                    <div class="absolute -top-6 -right-6 z-30 glass-card p-3 animate-pulse">
+                        <i class="fab fa-react text-4xl text-blue-400"></i>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 z-30 glass-card p-3">
+                        <i class="fab fa-docker text-4xl text-blue-500"></i>
+                    </div>
+                    <!-- Background Glow for Image -->
+                    <div
+                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-indigo-500 rounded-full filter blur-3xl opacity-20 z-0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Backend Development</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0f172a;
+            /* Slate 900 base */
+            color: #f8fafc;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            position: relative;
+            background-color: #0f172a;
+            overflow: hidden;
+        }
+
+        /* Decorative background elements */
+        .bg-accent-blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background-color: #059669;
+            /* Emerald 600 */
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+            top: -200px;
+            right: -200px;
+            z-index: 0;
+        }
+
+        .bg-accent-blob-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background-color: #1e3a8a;
+            /* Blue 900 */
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            bottom: -100px;
+            left: -100px;
+            z-index: 0;
+        }
+
+        .main-content {
+            flex: 1;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 40px;
+        }
+
+        .header-section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 17px;
+        }
+
+        .role-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #10b981;
+            /* Green accent */
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 16px;
+            margin-bottom: 10px;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .tech-item:hover {
+            transform: translateX(5px);
+            border-color: rgba(16, 185, 129, 0.5);
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .tech-icon {
+            font-size: 24px;
+            margin-right: 12px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .highlight-green {
+            color: #4ade80;
+        }
+
+        .highlight-yellow {
+            color: #fbbf24;
+        }
+
+        .highlight-blue {
+            color: #60a5fa;
+        }
+
+        .highlight-indigo {
+            color: #818cf8;
+        }
+
+        .highlight-red {
+            color: #f87171;
+        }
+
+        .highlight-purple {
+            color: #c084fc;
+        }
+
+        .illustration-container {
+            margin-top: auto;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .illustration-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: opacity 0.3s;
+        }
+
+        .illustration-img:hover {
+            opacity: 1;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(16, 185, 129, 0.15);
+            /* Green bg */
+            color: #4ade80;
+            /* Green text */
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Custom list style */
+        .feature-list p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            color: #cbd5e1;
+        }
+
+        .feature-list i {
+            margin-top: 5px;
+            margin-right: 12px;
+            color: #4ade80;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="bg-accent-blob"></div>
+        <div class="bg-accent-blob-2"></div>
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header-section flex justify-between items-end">
+                <div>
+                    <span class="section-badge"><i class="fas fa-server mr-2"></i>Component 02</span>
+                    <h1 class="text-4xl font-bold text-white mt-2">Backend Development</h1>
+                </div>
+                <div class="text-right">
+                    <p class="text-gray-400">ตรรกะธุรกิจและการประมวลผลข้อมูล</p>
+                </div>
+            </div>
+            <div class="content-grid">
+                <!-- Left Column: Description & Roles -->
+                <div class="left-column">
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-semibold text-green-400 mb-3">หน้าที่ความรับผิดชอบ</h2>
+                        <p class="text-gray-300 leading-relaxed mb-4 text-lg">
+                            ส่วนการทำงานเบื้องหลัง (Server-side) ที่รับผิดชอบตรรกะทางธุรกิจ การคำนวณ
+                            การเชื่อมต่อฐานข้อมูล และการรักษาความปลอดภัยของระบบ
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="role-card">
+                            <h3 class="text-lg font-medium text-white mb-2"><i
+                                    class="fas fa-cogs text-green-400 mr-2"></i>Business Logic &amp; API</h3>
+                            <p class="text-sm text-gray-400 feature-list">
+                                สร้าง API (REST/GraphQL) เพื่อประมวลผลคำขอจาก Frontend และส่งข้อมูลที่ถูกต้องกลับไป
+                            </p>
+                        </div>
+                        <div class="role-card" style="border-left-color: #f59e0b;">
+                            <h3 class="text-lg font-medium text-white mb-2"><i
+                                    class="fas fa-database text-yellow-500 mr-2"></i>Database Integration</h3>
+                            <p class="text-sm text-gray-400 feature-list">
+                                บริหารจัดการข้อมูล (CRUD) การ Query และตรวจสอบความถูกต้องของข้อมูลก่อนบันทึก
+                            </p>
+                        </div>
+                        <div class="role-card" style="border-left-color: #ef4444;">
+                            <h3 class="text-lg font-medium text-white mb-2"><i
+                                    class="fas fa-shield-alt text-red-500 mr-2"></i>Security &amp; Auth</h3>
+                            <p class="text-sm text-gray-400 feature-list">
+                                จัดการระบบยืนยันตัวตน (Authentication) การกำหนดสิทธิ์ (Authorization)
+                                และความปลอดภัยข้อมูล
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Tech Stack -->
+                <div class="right-column">
+                    <h2 class="text-xl font-semibold text-white mb-4 border-b border-gray-700 pb-1">
+                        <i class="fas fa-code mr-2 text-green-400"></i>Technology Stack 2024-2025
+                    </h2>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-node-js tech-icon highlight-green"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Node.js</p>
+                                <p class="text-xs text-gray-500">Express / NestJS</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-python tech-icon highlight-blue"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Python</p>
+                                <p class="text-xs text-gray-500">Django / Flask</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-java tech-icon highlight-red"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Java</p>
+                                <p class="text-xs text-gray-500">Spring Boot</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-php tech-icon highlight-indigo"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">PHP</p>
+                                <p class="text-xs text-gray-500">Laravel / Symfony</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-gem tech-icon highlight-red"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Ruby</p>
+                                <p class="text-xs text-gray-500">Ruby on Rails</p>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-cube tech-icon highlight-purple"></i>
+                            <div>
+                                <p class="text-sm font-semibold text-white">Go / .NET</p>
+                                <p class="text-xs text-gray-500">High Performance</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="illustration-container mt-6">
+                        <!-- Real illustration image -->
+                        <img alt="Backend Development Architecture" class="illustration-img"
+                            src="https://page.gensparksite.com/slides_images/900b9b6f16983a795634b2dc309b10d1.webp" />
+                        <div class="absolute bottom-0 left-0 w-full p-2 bg-gradient-to-t from-black to-transparent">
+                            <p class="text-xs text-gray-300 text-center">Server-Side Technologies &amp; Architecture</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
