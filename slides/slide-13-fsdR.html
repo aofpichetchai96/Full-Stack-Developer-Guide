@@ -21,14 +21,34 @@
         }
 
         .slide-container {
-            width: 1280px;
-            height: 720px;
+            width: 100%;
+            max-width: 1280px;
+            height: 100vh;
+            max-height: 720px;
             display: flex;
             flex-direction: column;
             position: relative;
             background-color: #0f172a;
             padding: 30px 40px;
             overflow: hidden;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .roadmap-container { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        }
+
+        @media (max-width: 768px) {
+            .slide-container { padding: 20px; }
+            .header h1 { font-size: 1.75rem; }
+            .roadmap-container { grid-template-columns: 1fr; gap: 16px; }
+            .phase-card { padding: 16px; }
+            .phase-number { font-size: 0.75rem; padding: 4px 10px; }
+            .phase-icon { width: 50px; height: 50px; font-size: 1.5rem; }
+            .phase-title { font-size: 1.1rem; }
+            .phase-content li { font-size: 0.85rem; }
+            .cert-bar { flex-wrap: wrap; gap: 8px; }
+            .cert-tag { font-size: 0.75rem; padding: 8px 14px; }
         }
 
         /* Background Ambient Effects */
